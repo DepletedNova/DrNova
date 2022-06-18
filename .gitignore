@@ -1,4 +1,5 @@
 .env
-.json
 .bat
+database.json
+package-lock.json
 node_modules/
