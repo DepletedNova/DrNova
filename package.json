@@ -6,7 +6,7 @@
   "author": "DepletedNova",
   "license": "ISC",
   "dependencies": {
-    "auto-git-update": "^1.1.1",
+    "auto-git-update": "^2.1.2",
     "discord.js": "^13.8.0",
     "dotenv": "^16.0.1"
   }
