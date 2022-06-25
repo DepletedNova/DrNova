@@ -22,9 +22,9 @@ module.exports = {
         evaluate.defaultData(bot)
         delete require.cache[require.resolve('../util/dataDefaults')]
     },
-    defaultUser: async (client, id, guildid) => {
+    defaultUser: async (bot, id, guildid) => {
         const evaluate = require('../util/dataDefaults')
-        evaluate.defaultUser(client, id, guildid)
+        evaluate.defaultUser(bot, id, guildid)
         delete require.cache[require.resolve('../util/dataDefaults')]
     },
     getUserData: function gud(client, guildID, userID) { return client.Data.Datastore.Guilds[guildID].Users[userID] },

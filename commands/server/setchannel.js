@@ -3,7 +3,7 @@ module.exports = {
     name: "setchannel",
     category: "server",
     description: "Sets channel to the selected value",
-    usage: `dr.setchannel \`logs\` \`[OPTIONAL] channelID\``,
+    usage: `dr.setchannel \`logs\` \`[OPTIONAL] ID\``,
     permissions: [Permissions.FLAGS.MANAGE_CHANNELS],
     devOnly: false,
     run: async ({bot, message, args}) => {
@@ -15,7 +15,6 @@ module.exports = {
 
         if (args[0].includes('log'))
         {
-            console.log(channel.id)
             client.Data.Datastore.Guilds[message.channel.guild.id].LogChannel = channel.id
             message.reply(`Successfully set logging channel.`).then((msg) => setTimeout(() => msg.delete(), 5000))
         }

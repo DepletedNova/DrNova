@@ -8,8 +8,8 @@ module.exports = {
     run: async ({bot, message, args}) => {
         const {client} = bot
         var dat = new Date()
-        await client.loadCommands(bot, true)
         await client.loadEvents(bot, true)
+        await client.loadCommands(bot, true)
         await client.loadResponses(bot, true)
         await client.loadButtons(bot, true)
         await client.Data.reload(bot)

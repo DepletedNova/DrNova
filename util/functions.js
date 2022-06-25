@@ -1,5 +1,5 @@
 const fs = require("fs")
-const { MessageEmbed, MessageActionRow, MessageButton } = require('discord.js') 
+const { MessageEmbed, MessageActionRow, MessageButton, MessageMentions } = require('discord.js') 
 
 //! Files
 const getFiles = (path, ending) => {
@@ -15,6 +15,32 @@ const getRecentMessage = async (channel, userID) => {
                 return message
             }
     })
+}
+
+//! Command utility
+const memberFromArgs = async (message, arg) => {
+    var guild = message.channel.guild
+
+    var user
+    if (arg.startsWith('<@') && arg.endsWith('>'))
+    {
+        var mention = arg.slice(2, -1)
+        if (mention.startsWith('!'))
+            mention = mention.slice(1)
+        user = await guild.members.fetch(mention)
+    }
+    if (!user && !isNaN(Number(arg)))
+        user = await guild.members.fetch(arg)
+    if (!user)
+    {
+        var x = (await guild.members.fetch({ query: arg, limit: 1 }))
+        if (x && x.size > 0)
+        {
+            user = x.first()
+        }
+    }
+
+    return user
 }
 
 //! Bot responses
@@ -39,17 +65,6 @@ const confirmCreditReply = (client, msg) => {
                     .setLabel('✖')])] })
                 .then((m) => setTimeout(() => {if (m) m.delete()}, 7500))
     }))
-
-    // Collector
-    var collector = msg.channel.createMessageComponentCollector({ time: 7500 })
-    collector.on('collect', async i => {
-        await i.deferUpdate()
-    })
-    collector.on('end', async i => {
-        delete collector
-    })
-    
-    client.Data.Memory.Collection[msg.channel.id] = collector
 }
 const searchCreditReply = (client, user) => {
     var data = client.Data.Memory.Active[user.id]
@@ -75,4 +90,5 @@ module.exports = {
     confirmCreditReply,
     searchCreditReply,
     cancelPrompt,
+    memberFromArgs,
 }

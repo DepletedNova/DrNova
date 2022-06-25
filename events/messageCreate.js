@@ -34,25 +34,26 @@ module.exports = {
         // Credit
         if (message.content.startsWith('+') || message.content.startsWith('-'))
         {
-            // Cooldown
-            let creditCooldown = client.Data.getGuildData(client, guildID).CreditCooldown
-            let userCooldown = client.Data.getUserData(client, guildID, memberID).CreditCooldown
-            if ((Date.now() - userCooldown)/1000 < creditCooldown) return message.reply(`Cooldown active: ${Math.ceil((Date.now() - userCooldown)/1000)}s`).then((msg) => 
-                setTimeout(() => msg.delete(), 10000))
-            client.Data.getUserData(client, guildID, memberID).CreditCooldown = Date.now()
-            
-            // Run
             var amount = Number(message.content.slice(1).split(/ +/g)[0].trim())
-            if (!isNaN(amount) && amount % 2 == 0 && amount <= 3 && amount != 0) {
+            if (!isNaN(amount) && amount <= 3 && amount != 0) {
+                let creditCooldown = client.Data.getGuildData(client, guildID).CreditCooldown
+                let userCooldown = client.Data.getUserData(client, guildID, memberID).CreditCooldown
+                if ((Date.now() - userCooldown)/1000 < creditCooldown) return message.reply(`Cooldown active: ${Math.ceil((Date.now() - userCooldown)/1000)}s`).then((msg) => 
+                    setTimeout(() => msg.delete(), 10000))
+                client.Data.getUserData(client, guildID, memberID).CreditCooldown = Date.now()
+
                 try {
                     await client.handleCredit(bot, message, message.content.startsWith('+') ? amount : -amount)
                 } catch(err) { console.error(err) }
+            }
+            else if (!isNaN(amount))
+            {
+                return message.reply('Values must range from `1` to `3`').then((msg) => setTimeout(() => msg.delete(), 5000))
             }
         }
 
         // Command prefix
         if (!message.content.startsWith(prefix)) return
-        setTimeout(() => message.delete(), 2000)
 
         // Cooldown
         let commandCooldown = client.Data.getGuildData(client, guildID).CommandCooldown
@@ -67,6 +68,7 @@ module.exports = {
 
         let command = client.commands.get(cmdstr)
         if (!command) return
+        setTimeout(() => message.delete(), 2000)
 
         // Developer
         if (command.devOnly && !developers.includes(memberID)) {

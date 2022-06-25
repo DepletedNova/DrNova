@@ -33,6 +33,7 @@ module.exports = {
         if (iNoUd(client.Data.Datastore.Guilds[guildid].Users[id].ResponseType)) client.Data.setUserData(client, guildid, id, "ResponseType", "")
         if (iNoUd(client.Data.Datastore.Guilds[guildid].Users[id].CommandCooldown)) client.Data.setUserData(client, guildid, id, "CommandCooldown", 0)
         if (iNoUd(client.Data.Datastore.Guilds[guildid].Users[id].CreditCooldown)) client.Data.setUserData(client, guildid, id, "CreditCooldown", 0)
+        if (iNoUd(client.Data.Datastore.Guilds[guildid].Users[id].GrantedCommands)) client.Data.setUserData(client, guildid, id, "GrantedCommands", [])
     }
 }
 

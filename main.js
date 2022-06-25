@@ -1,4 +1,4 @@
-const TESTING = true;
+const TESTING = false
 
 require('dotenv').config()
 const Discord = require('discord.js')
