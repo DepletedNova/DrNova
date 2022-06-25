@@ -1,6 +1,5 @@
-const TESTING = false
-
 require('dotenv').config()
+const AutoGitUpdate = require('auto-git-update')
 const Discord = require('discord.js')
 const client = new Discord.Client({ intents: ["GUILDS", "GUILD_MESSAGES", "DIRECT_MESSAGES"] })
 
@@ -9,6 +8,12 @@ let bot = {
     prefix: "dr.",
     developers: ["261666390279323648"],
 }
+
+client.gitUpdater = new AutoGitUpdate({
+    repository: 'https://github.com/DepletedNova/DrNova',
+    tempLocation: '../UpdateTemp',
+    ignoreFiles: ['main.js'],
+})
 
 client.commands = new Discord.Collection()
 client.events = new Discord.Collection()
@@ -31,4 +36,4 @@ client.loadButtons(bot, false)
 
 module.exports = bot
 
-client.login(TESTING ? process.env.TEST_TOKEN : process.env.TOKEN)
+client.login(process.env.TESTING === 'true' ? process.env.TEST_TOKEN : process.env.TOKEN)
