@@ -3,7 +3,7 @@ module.exports = {
     category: "info",
     description: "Sends back ping",
     usage: `dr.ping`,
-    permission: 0,
+    permissions: [],
     devOnly: false,
     run: async ({bot, message, args}) => {
         const {client} = bot

@@ -3,7 +3,7 @@ module.exports = {
     category: "info",
     description: "Sends back command information",
     usage: `dr.help`,
-    permission: 0,
+    permissions: [],
     devOnly: false,
     run: async ({bot, message, args}) => {
         const {client} = bot
