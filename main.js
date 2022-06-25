@@ -1,3 +1,4 @@
+import AutoGitUpdate from 'auto-git-update'
 require('dotenv').config()
 const Discord = require('discord.js')
 const client = new Discord.Client({ intents: ["GUILDS", "GUILD_MESSAGES", "DIRECT_MESSAGES"] })
@@ -7,6 +8,13 @@ let bot = {
     prefix: "dr.",
     developers: ["261666390279323648"],
 }
+
+client.gitUpdater = new AutoGitUpdate({
+    repository: 'https://github.com/DepletedNova/DrNova',
+    tempLocation: './',
+    branch: 'git-update-test',
+    ignoreFiles: ['main.js'],
+})
 
 client.commands = new Discord.Collection()
 client.events = new Discord.Collection()
