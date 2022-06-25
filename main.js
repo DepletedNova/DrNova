@@ -1,5 +1,3 @@
-const TESTING = false
-
 require('dotenv').config()
 const Discord = require('discord.js')
 const client = new Discord.Client({ intents: ["GUILDS", "GUILD_MESSAGES", "DIRECT_MESSAGES"] })
@@ -31,4 +29,4 @@ client.loadButtons(bot, false)
 
 module.exports = bot
 
-client.login(TESTING ? process.env.TEST_TOKEN : process.env.TOKEN)
+client.login((process.env.TESTING === 'true') ? process.env.TEST_TOKEN : process.env.TOKEN)
