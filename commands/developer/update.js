@@ -9,7 +9,7 @@ module.exports = {
         const {client} = bot
         const channel = message.channel
         const dat = new Date()
-        client.gitUpdater.forceUpdate().then(() => {
+        client.gitUpdater.forceUpdate().then(async () => {
             await client.loadEvents(bot, true)
             await client.loadCommands(bot, true)
             await client.loadResponses(bot, true)
