@@ -16,7 +16,7 @@ module.exports = {
             await client.loadButtons(bot, true)
             await client.Data.reload(bot)
             console.log(`Update took ${Math.abs(Date.now() - dat)}ms`)
-            message.send(`Updated bot in \`${Math.abs(Date.now() - dat)/1000}s\``)
+            channel.send(`Updated bot in \`${Math.abs(Date.now() - dat)/1000}s\``)
             delete dat
         })
     }
