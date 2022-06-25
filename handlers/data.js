@@ -7,7 +7,7 @@ module.exports = {
         Collection: {},
     },
     save: function save(client) {
-        var jsonString = JSON.stringify(client.Data.Datastore)
+        var jsonString = JSON.stringify(client.Data.Datastore, null, " ")
         if (!jsonString || jsonString.trim() == '') {
             console.error("Client data corrupted. Loaded non-corrupted data from file.")
             return client.Data.load(client)
