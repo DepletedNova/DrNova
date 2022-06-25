@@ -1,7 +1,7 @@
 module.exports = {
     name: "reload",
     category: "developer",
-    description: "Reloads commands/events",
+    description: "Reloads the bot's internal functions",
     usage: `dr.reload`,
     permissions: [],
     devOnly: true,

@@ -3,7 +3,7 @@ module.exports = {
     name: "setchannel",
     category: "server",
     description: "Sets channel to the selected value",
-    usage: `dr.setchannel \`logs\` \`[OPTIONAL] ID\``,
+    usage: `dr.setchannel <logs>`,
     permissions: [Permissions.FLAGS.MANAGE_CHANNELS],
     devOnly: false,
     run: async ({bot, message, args}) => {

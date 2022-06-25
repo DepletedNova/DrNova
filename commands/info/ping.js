@@ -1,7 +1,7 @@
 module.exports = {
     name: "ping",
     category: "info",
-    description: "Sends back ping",
+    description: "Sends back the bots ping",
     usage: `dr.ping`,
     permissions: [],
     devOnly: false,

@@ -4,7 +4,7 @@ module.exports = {
     name: "stats",
     category: "info",
     description: "Gives back information about any given member",
-    usage: `dr.stats \`[OPTIONAL] user\``,
+    usage: `dr.stats [(optional) user]`,
     permissions: [],
     devOnly: false,
     run: async ({bot, message, args}) => {

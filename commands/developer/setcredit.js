@@ -3,7 +3,7 @@ module.exports = {
     name: "setcredit",
     category: "developer",
     description: "Sets the credit of a user",
-    usage: `dr.setcredit \`user id\` \`(+ / -) amount\``,
+    usage: `dr.setcredit [user] [<+ | -> amount]`,
     permissions: [],
     devOnly: true,
     run: async ({bot, message, args}) => {

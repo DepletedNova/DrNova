@@ -4,7 +4,7 @@ module.exports = {
     name: "help",
     category: "info",
     description: "Gives back a list of commands",
-    usage: `dr.help \`[OPTIONAL] command\``,
+    usage: `dr.help [(optional) command]`,
     permissions: [],
     devOnly: false,
     run: async ({bot, message, args}) => {
@@ -12,21 +12,20 @@ module.exports = {
         
         if (args[0])
         {
-            console.log("Help")
             var cmd = client.commands.get(args[0].toLowerCase())
             if (!cmd) return message.reply("Command does not exist.").then((msg) => setTimeout(() => msg.delete(), 5000))
             var embed = new MessageEmbed().setColor('BLUE')
-                .setTitle(`Command Info: ${cmd.name}`)
+                .setTitle(cmd.name)
                 .setDescription(cmd.description)
-                .addField('Usage', cmd.usage)
+                .addField('Usage', `\`${cmd.usage}\``, true)
+            if (cmd.devOnly)
+                embed.addField("Developer Only", "\`true\`", true)
             if (cmd.permissions.length > 0)
             {
                 var perms = ``
                 cmd.permissions.forEach((perm) => perms += `\`${flags[perm]}\`, `)
                 embed.addField("Permissions", perms.slice(0, -2))
             }
-            if (cmd.devOnly)
-                embed.addField("Developer Only", "True")
             message.reply({ embeds: [embed] })
         }
         else
