@@ -7,7 +7,12 @@ module.exports = {
         Collection: {},
     },
     save: function save(client) {
-        fs.writeFile('./database.json', JSON.stringify(client.Data.Datastore), (err) => {
+        var jsonString = JSON.stringify(client.Data.Datastore)
+        if (!jsonString || jsonString.trim() == '') {
+            console.error("Client data corrupted. Loaded non-corrupted data from file.")
+            return client.Data.load(client)
+        }
+        fs.writeFile('./database.json', jsonString, (err) => {
             if (err) throw err
         })
     },
