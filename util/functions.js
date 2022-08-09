@@ -77,7 +77,7 @@ const searchCreditReply = (client, user) => {
 }
 // Generic responses
 const cancelPrompt = (client, msg) => {
-    client.Data.setUserData(client.Data.Memory.Active[msg.author.id].Guild, msg.author.id, "Responding", false)
+    client.Data.setUserData(client, client.Data.Memory.Active[msg.author.id].Guild, msg.author.id, "Responding", false)
     delete client.Data.Memory.Active[msg.author.id]
     getRecentMessage(msg.channel, client.user.id).then(x => x.delete())
     msg.reply("Prompt cancelled.")

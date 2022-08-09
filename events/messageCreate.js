@@ -35,7 +35,7 @@ module.exports = {
         if (message.content.startsWith('+') || message.content.startsWith('-'))
         {
             var amount = Number(message.content.slice(1).split(/ +/g)[0].trim())
-            if (!isNaN(amount) && amount <= 3 && amount != 0) {
+            if (!isNaN(amount) && amount != 0 && (amount <= 3 || developers.includes(memberID))) {
                 let creditCooldown = client.Data.getGuildData(client, guildID).CreditCooldown
                 let userCooldown = client.Data.getUserData(client, guildID, memberID).CreditCooldown
                 if ((Date.now() - userCooldown)/1000 < creditCooldown) return message.reply(`Cooldown active: ${Math.ceil((Date.now() - userCooldown)/1000)}s`).then((msg) => 
