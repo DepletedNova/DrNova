@@ -44,6 +44,7 @@ module.exports = {
             throw err
         }
 
-        message.reply(`Successfully granted \`${total > 0 ? '+' : total < 0 ? '-' : ''}${Math.abs(total)}\` credits to ${target.nickname ? target.nickname : target.user.tag}`)
+        message.reply(`Successfully granted \`${data.Amount > 0 ? '+' : data.Amount < 0 ? '-' : ''}${Math.abs(data.Amount)}\` credits to ${
+            target.nickname ? target.nickname : target.user.tag}`)
     }
 }
